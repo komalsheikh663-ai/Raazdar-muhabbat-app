@@ -6,7 +6,7 @@
     <title>Raazdar Muhabbat - Husny Kanwal</title>
     <style>
         :root { --main-color: #800000; --bg-color: #fff5f5; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: var(--bg-color); padding: 20px; color: #333; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: var(--bg-color); padding: 20px; color: #333; margin-bottom: 70px; }
         
         .header { margin-bottom: 25px; padding: 15px; border-bottom: 2px solid var(--main-color); }
         h2 { color: var(--main-color); margin-bottom: 5px; }
@@ -33,6 +33,20 @@
         iframe { width: 100%; height: 85vh; border: 2px solid var(--main-color); border-radius: 10px; margin-top: 15px; display: none; }
         
         .footer-info { font-size: 12px; color: #777; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; }
+
+        /* Ad Styling to keep it at bottom */
+        .ad-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            padding: 5px 0;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +57,7 @@
     </div>
 
     <div class="description">
-        Raazdar Mohabbat Urdu Novel is written by <b>Husny Kanwal</b>. It's a novel primarily classified as romantic fiction. It blends elements of love, suspense, and emotions, with a focus on a character's journey of faith on each other and discover new emotions. Enjoy a seamless reading experience.
+        Raazdar Mohabbat Urdu Novel is written by <b>Husny Kanwal</b>. It's a novel primarily classified as romantic fiction. It blends elements of love, suspense, and emotions. Enjoy a seamless reading experience.
     </div>
 
     <div class="action-bar">
@@ -66,6 +80,19 @@
         Features: Zoom In/Out • Day/Night Mode • Offline Access • Full Screen
     </div>
 
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '9fe28f5229d035fcb59d3e14f83d60a2',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://www.highperformanceformat.com/9fe28f5229d035fcb59d3e14f83d60a2/invoke.js"></script>
+    </div>
+
     <script>
         function showIframe() {
             document.getElementById('pdf_frame').style.display = 'block';
@@ -85,7 +112,6 @@
         }
 
         function rateUs() {
-            // Yahan aap apni Play Store ka link daal sakti hain
             alert("Thank you for your interest! Rating feature will be active once published on Play Store.");
         }
     </script>
