@@ -6,11 +6,36 @@
     <title>Raazdar Muhabbat</title>
     <style>
         :root { --main-color: #800000; --bg-color: #fff5f5; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: var(--bg-color); padding: 20px; color: #333; margin-bottom: 20px; }
+        
+        /* Security: Disable Text Selection */
+        body { 
+            -webkit-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            text-align: center; 
+            background-color: var(--bg-color); 
+            padding: 20px; 
+            color: #333; 
+            margin-bottom: 20px; 
+        }
+        
         .header { margin-bottom: 25px; padding: 15px; border-bottom: 2px solid var(--main-color); }
         h2 { color: var(--main-color); margin-bottom: 5px; }
         .writer { font-style: italic; color: #555; margin-bottom: 15px; }
-        .description { background: white; padding: 15px; border-radius: 10px; font-size: 14px; line-height: 1.6; margin-bottom: 25px; text-align: justify; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        /* White Box Update */
+        .description { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            line-height: 1.6; 
+            margin-bottom: 25px; 
+            text-align: center; /* Center aligned for the new short text */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+        }
+
         .btn-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 400px; margin: 0 auto 25px; }
         .part-btn { background-color: var(--main-color); color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; border: none; }
         .action-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
@@ -18,10 +43,12 @@
         .iframe-wrapper { position: relative; width: 100%; height: 85vh; margin-top: 15px; display: none; }
         iframe { width: 100%; height: 100%; border: 2px solid var(--main-color); border-radius: 10px; }
         .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 5px solid #f3f3f3; border-top: 5px solid var(--main-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
+        .footer-info { font-size: 12px; color: #777; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
-<body>
+
+<body oncontextmenu="return false">
 
     <div class="header">
         <h2>Raazdar Muhabbat</h2>
@@ -29,7 +56,8 @@
     </div>
 
     <div class="description">
-        Raazdar Mohabbat Urdu Novel by <b>Husny Kanwal</b>. Enjoy a smooth reading experience without download options.
+        Novel's by <b>Husny Kanwal</b>...<br>
+        Novels : jo dil m uter jayn❤️...
     </div>
 
     <div class="action-bar">
@@ -51,14 +79,24 @@
         <iframe id="pdf_frame" onload="hideLoader()"></iframe>
     </div>
 
+    <div class="footer-info">
+        Features: Zoom In/Out • Night Mode • Easy Navigation • Search • Offline Access
+    </div>
+
     <script>
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'c' || e.key === 's' || e.key === 'u' || e.key === 'p')) {
+                e.preventDefault();
+                alert("Security Protected: Copying is disabled.");
+            }
+        });
+
         function loadNovel(id) {
             const wrapper = document.getElementById('iframe-wrapper');
             const frame = document.getElementById('pdf_frame');
             const loader = document.getElementById('loader');
             wrapper.style.display = 'block'; 
             loader.style.display = 'block'; 
-            // Secure preview link to prevent downloads
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
             wrapper.scrollIntoView({ behavior: 'smooth' });
         }
@@ -67,12 +105,12 @@
 
         function shareApp() {
             if (navigator.share) {
-                navigator.share({ title: 'Raazdar Muhabbat', text: 'Read amazing novels by Husny Kanwal!', url: window.location.href });
+                navigator.share({ title: 'Raazdar Muhabbat', text: 'Read amazing Urdu novels by Husny Kanwal!', url: window.location.href });
             }
         }
 
         function rateApp() {
-            window.open('https://play.google.com/store/apps/details?id=Novels by Husny Kanwal', '_blank');
+            window.open('https://play.google.com/store/apps/details?id=com.raazdar.muhabbat', '_blank');
         }
     </script>
 </body>
