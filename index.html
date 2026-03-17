@@ -3,115 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raazdar Muhabbat</title>
+    <title>Raazdar Muhabbat - Urdu Novel</title>
     <style>
-        :root { --main-color: #800000; --bg-color: #fff5f5; }
+        :root { --main: #800000; --bg: #fff5f5; }
         
-        /* Security: Disable Text Selection */
         body { 
-            -webkit-user-select: none; 
-            -ms-user-select: none; 
-            user-select: none; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            text-align: center; 
-            background-color: var(--bg-color); 
-            padding: 20px; 
-            color: #333; 
-            margin-bottom: 20px; 
-        }
-        
-        .header { margin-bottom: 25px; padding: 15px; border-bottom: 2px solid var(--main-color); }
-        h2 { color: var(--main-color); margin-bottom: 5px; }
-        .writer { font-style: italic; color: #555; margin-bottom: 15px; }
-        
-        /* White Box Update */
-        .description { 
-            background: white; 
-            padding: 15px; 
-            border-radius: 10px; 
-            font-size: 16px; 
-            line-height: 1.6; 
-            margin-bottom: 25px; 
-            text-align: center; /* Center aligned for the new short text */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            -webkit-user-select: none; user-select: none; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            text-align: center; background-color: var(--bg); 
+            margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        .btn-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 400px; margin: 0 auto 25px; }
-        .part-btn { background-color: var(--main-color); color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; cursor: pointer; border: none; }
-        .action-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .action-btn { background: #fff; color: var(--main-color); border: 2px solid var(--main-color); padding: 8px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; }
-        .iframe-wrapper { position: relative; width: 100%; height: 85vh; margin-top: 15px; display: none; }
-        iframe { width: 100%; height: 100%; border: 2px solid var(--main-color); border-radius: 10px; }
-        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 5px solid #f3f3f3; border-top: 5px solid var(--main-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; }
-        .footer-info { font-size: 12px; color: #777; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; }
+        .app-header {
+            background: white; padding: 15px 10px;
+            border-bottom: 3px solid var(--main);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .app-title { 
+            font-size: 30px; font-weight: 900; 
+            color: var(--main); margin: 0; 
+            font-family: 'Georgia', serif;
+        }
+        .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
+
+        .info-card { 
+            background: white; margin: 20px 15px 25px 15px; padding: 15px;
+            border-radius: 12px; font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+            border-left: 6px solid var(--main);
+            border-right: 6px solid var(--main);
+            display: flex; flex-direction: column; gap: 5px;
+            line-height: 1.4;
+        }
+        .author-line { color: #333; font-weight: bold; font-size: 17px; }
+        .tagline-line { color: #555; font-size: 15px; }
+
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-bottom: 20px; }
+        .p-btn { 
+            background: var(--main); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; font-weight: bold;
+            font-size: 14px; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; }
+        
+        /* Security Shield for Pop-out button */
+        .security-overlay { 
+            position: absolute; top: 0; right: 0; 
+            width: 70px; height: 60px; 
+            background: transparent; z-index: 9999; 
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
 
 <body oncontextmenu="return false">
 
-    <div class="header">
-        <h2>Raazdar Muhabbat</h2>
-        <div class="writer">By Husny Kanwal</div>
+    <div class="app-header">
+        <h1 class="app-title">Raazdar Muhabbat</h1>
+        <div class="app-sub">By Husny Kanwal</div>
     </div>
 
-    <div class="description">
-        Novel's by <b>Husny Kanwal</b>...<br>
-        Novels : jo dil m uter jayn❤️...
+    <div class="info-card">
+        <div class="author-line">Novel's by <b>Husny Kanwal...</b></div>
+        <div class="tagline-line">Novels : jo dil m uter jayn❤️...</div>
     </div>
 
-    <div class="action-bar">
-        <button class="action-btn" onclick="shareApp()">📤 Share App</button>
-        <button class="action-btn" onclick="rateApp()">⭐ Rate Us</button>
+    <div class="grid-container">
+        <button class="p-btn" onclick="openNovel('1AXxJiZTDiv7n624Z3Np17K6fWNoLYHh2')">Part 1</button>
+        <button class="p-btn" onclick="openNovel('1PE-qc0ePHsM8wq6Vo1-zkiF9x4jp6NDn')">Part 2</button>
+        <button class="p-btn" onclick="openNovel('1FnWmrrB06kADCbgumFe062op_bvOc5WU')">Part 3</button>
+        <button class="p-btn" onclick="openNovel('1qlWpsKw9ikppJWTBnQj0TxsK04p656pj')">Part 4</button>
+        <button class="p-btn" onclick="openNovel('1dAAZ0bWFSbSvbrY9riQ7V2bJ1di9wD6z')">Part 5</button>
+        <button class="p-btn" onclick="openNovel('14eoqEEUBqnKMzZw0tDA6Ki6uJugu1-_y')">Part 6</button>
     </div>
 
-    <div class="btn-container">
-        <button class="part-btn" onclick="loadNovel('1AXxJiZTDiv7n624Z3Np17K6fWNoLYHh2')">Part 1</button>
-        <button class="part-btn" onclick="loadNovel('1PE-qc0ePHsM8wq6Vo1-zkiF9x4jp6NDn')">Part 2</button>
-        <button class="part-btn" onclick="loadNovel('1FnWmrrB06kADCbgumFe062op_bvOc5WU')">Part 3</button>
-        <button class="part-btn" onclick="loadNovel('1qlWpsKw9ikppJWTBnQj0TxsK04p656pj')">Part 4</button>
-        <button class="part-btn" onclick="loadNovel('1dAAZ0bWFSbSvbrY9riQ7V2bJ1di9wD6z')">Part 5</button>
-        <button class="part-btn" onclick="loadNovel('14eoqEEUBqnKMzZw0tDA6Ki6uJugu1-_y')">Part 6</button>
-    </div>
-
-    <div class="iframe-wrapper" id="iframe-wrapper">
-        <div class="loader" id="loader"></div>
-        <iframe id="pdf_frame" onload="hideLoader()"></iframe>
-    </div>
-
-    <div class="footer-info">
-        Features: Zoom In/Out • Night Mode • Easy Navigation • Search • Offline Access
+    <div class="novel-container" id="viewArea">
+        <div class="security-overlay"></div> 
+        <div class="loader" id="loadingIcon"></div>
+        <iframe id="novelFrame" onload="stopLoad()"></iframe>
     </div>
 
     <script>
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'c' || e.key === 's' || e.key === 'u' || e.key === 'p')) {
-                e.preventDefault();
-                alert("Security Protected: Copying is disabled.");
-            }
-        });
-
-        function loadNovel(id) {
-            const wrapper = document.getElementById('iframe-wrapper');
-            const frame = document.getElementById('pdf_frame');
-            const loader = document.getElementById('loader');
-            wrapper.style.display = 'block'; 
-            loader.style.display = 'block'; 
+        function openNovel(id) {
+            const area = document.getElementById('viewArea');
+            const frame = document.getElementById('novelFrame');
+            const loader = document.getElementById('loadingIcon');
+            
+            area.style.display = 'block';
+            loader.style.display = 'block';
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
-            wrapper.scrollIntoView({ behavior: 'smooth' });
+            
+            // Auto scroll to novel
+            setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
-
-        function hideLoader() { document.getElementById('loader').style.display = 'none'; }
-
-        function shareApp() {
-            if (navigator.share) {
-                navigator.share({ title: 'Raazdar Muhabbat', text: 'Read amazing Urdu novels by Husny Kanwal!', url: window.location.href });
-            }
-        }
-
-        function rateApp() {
-            window.open('https://play.google.com/store/apps/details?id=com.raazdar.muhabbat', '_blank');
-        }
+        function stopLoad() { document.getElementById('loadingIcon').style.display = 'none'; }
+        
+        // Security: Block Keyboard Shortcuts
+        document.addEventListener('keydown', e => { if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); });
     </script>
 </body>
 </html>
