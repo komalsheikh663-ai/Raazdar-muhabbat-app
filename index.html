@@ -6,30 +6,29 @@
     <title>Raazdar Muhabbat - Ultimate Protected</title>
     
     <link rel="preconnect" href="https://drive.google.com">
-    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
     
     <script>
-        // 3. App Open Ad Call & Ad-Blocker Detection (Caching System)
+        // 1. Smart Bypass & 2. SDK Loader
         window.onload = function() {
-            // App Open Trigger
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
             
-            // Ad-Blocker Detection
+            // 12 سیکنڈ کا ویٹ ٹائم تاکہ سست انٹرنیٹ پر الرٹ نہ آئے
             setTimeout(() => {
-                const adCheck = document.querySelector('.adsbygoogle');
-                if (!adCheck || adCheck.offsetHeight === 0) {
+                const checkElement = document.querySelector('.adsbygoogle');
+                const isHidden = !checkElement || checkElement.innerHTML.replace(/\s/g, "").length === 0;
+                
+                // صرف تب الرٹ دکھائے گا جب لوکل ٹیسٹنگ نہ ہو اور اشتہار بلاک ہو
+                if (isHidden && window.location.protocol !== 'file:') {
                     document.getElementById('blocker-warning').style.display = 'block';
                 }
-            }, 5000);
+            }, 12000);
         };
     </script>
     
     <style>
-        /* 4. CSS Optimization & Maroon Theme */
         :root { --main: #800000; --bg: #fff5f5; }
-        
-        * { -webkit-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
+        * { -webkit-user-select: none !important; user-select: none !important; }
 
         body { 
             font-family: 'Segoe UI', Roboto, sans-serif; 
@@ -38,46 +37,40 @@
             scroll-behavior: smooth;
         }
 
-        /* 5. Smart Error Handling & Blocker UI */
+        /* 3. Deep Masking: نام بدل کر عام "Content" والے رکھ دیے گئے ہیں */
+        .novel-chapter-wrap { margin: 10px 0; min-height: 1px; background: transparent; overflow: hidden; }
+        .content-spacer-unit { margin: 15px 0; min-height: 1px; }
+
         #blocker-warning {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(128, 0, 0, 0.98); color: white;
             z-index: 10000; text-align: center; padding-top: 25%; padding-inline: 20px;
         }
 
-        .app-header {
-            background: white; padding: 15px 10px;
-            border-bottom: 3px solid var(--main);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+        .app-header { background: white; padding: 15px 10px; border-bottom: 3px solid var(--main); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .app-title { font-size: 30px; font-weight: 900; color: var(--main); margin: 0; font-family: 'Georgia', serif; }
         .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
-
-        /* 6. Lazy Loading Ad Zones (Transparent - No Grey Band) */
-        .ad-zone { margin: 10px 0; min-height: 1px; background: transparent; overflow: hidden; }
 
         .info-card { 
             background: white; margin: 20px 15px 25px 15px; padding: 15px;
             border-radius: 12px; font-size: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
             border-left: 6px solid var(--main); border-right: 6px solid var(--main);
-            display: flex; flex-direction: column; gap: 5px;
         }
 
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-bottom: 20px; }
         .p-btn { 
             background: var(--main); color: #fff; border: none;
             padding: 14px; border-radius: 8px; font-weight: bold;
-            font-size: 14px; cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* 7. Hard-Coded Privacy Shield (Pop-out Block) */
+        /* 4. Protection: Security Shield */
         .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; overflow: hidden; }
-        .security-shield { position: absolute; top: 0; right: 0; width: 100%; height: 65px; background: transparent; z-index: 9999; pointer-events: auto; }
+        .security-shield { position: absolute; top: 0; right: 0; width: 100%; height: 65px; background: transparent; z-index: 9999; }
 
-        iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 1; }
-        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; z-index: 150; }
+        iframe { width: 100%; height: 100%; border: none; }
+        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
@@ -86,7 +79,7 @@
 
     <div id="blocker-warning">
         <h2>سیکیورٹی الرٹ! ⚠️</h2>
-        <p>ناول پڑھنے کے لیے براہ کرم ایڈ بلاکر بند کر کے پیج ریفریش کریں۔</p>
+        <p>ناول لوڈ ہونے میں دیر ہو رہی ہے۔ براہ کرم انٹرنیٹ چیک کریں یا ایڈ بلاکر بند کر کے ریفریش کریں۔</p>
         <button onclick="location.reload()" style="background:white; color:var(--main); padding:10px 20px; border:none; border-radius:5px; font-weight:bold;">ریفریش کریں</button>
     </div>
 
@@ -95,7 +88,7 @@
         <div class="app-sub">By Husny Kanwal</div>
     </div>
 
-    <div class="ad-zone">
+    <div class="novel-chapter-wrap">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="3076616949" data-ad-format="banner"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
@@ -109,7 +102,7 @@
         <button class="p-btn" onclick="openNovel('1AXxJiZTDiv7n624Z3Np17K6fWNoLYHh2')">Part 1</button>
         <button class="p-btn" onclick="openNovel('1PE-qc0ePHsM8wq6Vo1-zkiF9x4jp6NDn')">Part 2</button>
         
-        <div style="grid-column: span 2;" class="ad-zone">
+        <div style="grid-column: span 2;" class="content-spacer-unit">
             <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="4852733040"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
@@ -127,26 +120,18 @@
     </div>
 
     <script>
-        // 10. Interstitial Trigger & Secure Opening
+        // 5. Interstitial Trigger & 6. Smart Opening
         function openNovel(id) {
-            try {
-                (adsbygoogle = window.adsbygoogle || []).push({
-                    google_ad_client: "ca-app-pub-8741169014792010",
-                    enable_page_level_ads: true
-                });
-            } catch (e) { }
-
+            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
             const area = document.getElementById('viewArea');
             const frame = document.getElementById('novelFrame');
-            
             area.style.display = 'block';
             document.getElementById('loadingIcon').style.display = 'block';
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
-            
             setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
         
-        // Final Security Guards
+        // 7. Protection: Key Guards
         document.addEventListener('keydown', e => { 
             if (e.ctrlKey && ['c','u','s','p','a'].includes(e.key)) e.preventDefault(); 
         });
