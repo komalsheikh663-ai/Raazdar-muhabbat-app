@@ -10,8 +10,11 @@
     <style>
         :root { --main: #800000; --bg: #fff5f5; }
         
+        /* 1. TEXT COPY PROTECTION */
         * { 
             -webkit-user-select: none !important; 
+            -moz-user-select: none !important; 
+            -ms-user-select: none !important; 
             user-select: none !important; 
             -webkit-touch-callout: none !important; 
         }
@@ -23,55 +26,15 @@
             scroll-behavior: smooth;
         }
 
-        .app-header { 
-            background: white; 
-            padding: 15px 10px; 
-            border-bottom: 3px solid var(--main); 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-        }
-        
-        .app-title { 
-            font-size: 32px; 
-            font-weight: 900; 
-            color: var(--main); 
-            margin: 0; 
-            font-family: 'Georgia', serif; 
-        }
+        .app-header { background: white; padding: 15px 10px; border-bottom: 3px solid var(--main); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .app-title { font-size: 32px; font-weight: 900; color: var(--main); margin: 0; font-family: 'Georgia', serif; }
 
-        .info-card { 
-            background: white; 
-            margin: 15px; 
-            padding: 15px; 
-            border-radius: 12px; 
-            border-left: 6px solid var(--main); 
-            border-right: 6px solid var(--main); 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
-        }
+        .info-card { background: white; margin: 15px; padding: 15px; border-radius: 12px; border-left: 6px solid var(--main); border-right: 6px solid var(--main); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 
-        .grid-container { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
-            padding: 0 15px; 
-            margin-top: 20px; 
-            margin-bottom: 30px;
-        }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-top: 20px; margin-bottom: 30px; }
+        .p-btn { background: var(--main); color: #fff; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 
-        .p-btn { 
-            background: var(--main); 
-            color: #fff; 
-            border: none; 
-            padding: 14px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-        }
-
-        .p-btn:active {
-            transform: scale(0.98);
-        }
-
+        /* 2. FRAME & SHIELD PROTECTION */
         .reader-display-frame { 
             position: relative; 
             width: 100%; 
@@ -81,31 +44,25 @@
             background: #f0f0f0; 
             overflow: hidden; 
         }
-        
-        iframe { width: 100%; height: 100%; border: none; }
 
-        .loader { 
+        /* Blocks PDF download/pop-out buttons */
+        .top-shield-layer { 
             position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            border: 4px solid #ddd; 
-            border-top: 4px solid var(--main); 
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            animation: spin 1s linear infinite; 
-            z-index: 150; 
+            top: 0; 
+            right: 0; 
+            width: 100%; 
+            height: 65px; 
+            background: transparent; 
+            z-index: 9999; 
         }
-
-        @keyframes spin { 
-            0% { transform: translate(-50%, -50%) rotate(0deg); } 
-            100% { transform: translate(-50%, -50%) rotate(360deg); } 
-        }
+        
+        iframe { width: 100%; height: 100%; border: none; position: relative; z-index: 1; }
+        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; z-index: 150; }
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(3600deg); } }
     </style>
 </head>
 
-<body oncontextmenu="return false">
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
 
     <div class="app-header">
         <h1 class="app-title">Raazdar Muhabbat</h1>
@@ -127,6 +84,7 @@
     </div>
 
     <div class="reader-display-frame" id="viewArea">
+        <div class="top-shield-layer"></div>
         <div class="loader" id="loadingIcon"></div>
         <iframe id="novelFrame" onload="document.getElementById('loadingIcon').style.display='none'"></iframe>
     </div>
@@ -140,14 +98,13 @@
             document.getElementById('loadingIcon').style.display = 'block';
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
             
-            setTimeout(() => { 
-                area.scrollIntoView({ behavior: 'smooth' }); 
-            }, 300);
+            setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
 
-        // بیسک پروٹیکشن (کاپی روکنے کے لیے)
+        /* 4. KEYBOARD PROTECTION (CTRL+C, CTRL+U, etc.) */
         document.addEventListener('keydown', e => { 
             if (e.ctrlKey && ['c','u','s','p','a'].includes(e.key)) e.preventDefault(); 
+            if (e.keyCode == 123) e.preventDefault(); // Block F12 (Inspect)
         });
     </script>
 </body>
